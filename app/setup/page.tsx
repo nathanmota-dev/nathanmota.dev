@@ -4,6 +4,27 @@ import Image from "next/image";
 import { FiBox } from "react-icons/fi";
 import { PiStackSimpleBold } from "react-icons/pi";
 import { SlScreenDesktop } from "react-icons/sl";
+import type { CSSProperties } from "react";
+import type { IconType } from "react-icons";
+
+type ToolBadgeProps = {
+    name: string;
+    icon: IconType;
+    color: string;
+};
+
+function ToolBadge({ name, icon: Icon, color }: ToolBadgeProps) {
+    return (
+        <Badge
+            variant="secondary"
+            className="cursor-pointer gap-1.5 transition-colors duration-200 hover:border-[var(--tool-color)] hover:text-[var(--tool-color)]"
+            style={{ "--tool-color": color } as CSSProperties}
+        >
+            <Icon aria-hidden="true" className="size-3.5" />
+            {name}
+        </Badge>
+    );
+}
 
 export default function Setup() {
     const { specsItems, personalStackItems, workStackItems, toolsItems } = RESUME_DATA.setup;
@@ -53,37 +74,37 @@ export default function Setup() {
                         </div>
                     </div>
 
-                    {/* Personal */}
+                    {/* Personal environment */}
                     <div className="group bento-card md:col-span-7 p-6 border border-border/50 rounded-3xl transition-all duration-300 hover:bg-black/2 hover:shadow-xl hover:shadow-primary/5">
                         <h3 className="text-sm font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
-                            <PiStackSimpleBold className="w-4 h-4" /> Stack - Personal
+                            <PiStackSimpleBold className="w-4 h-4" /> Personal Environment
                         </h3>
                         <div className="flex flex-wrap gap-2">
                             {personalStackItems.map((tool) => (
-                                <Badge key={tool} variant="secondary">{tool}</Badge>
+                                <ToolBadge key={tool.name} {...tool} />
                             ))}
                         </div>
                     </div>
 
-                    {/* Work */}
+                    {/* Work environment */}
                     <div className="group bento-card md:col-span-5 p-6 border border-border/50 rounded-3xl transition-all duration-300 hover:bg-black/2 hover:shadow-xl hover:shadow-primary/5">
                         <h3 className="text-sm font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
-                            <PiStackSimpleBold className="w-4 h-4" /> Stack - Work
+                            <PiStackSimpleBold className="w-4 h-4" /> Work Environment
                         </h3>
                         <div className="flex flex-wrap gap-2">
                             {workStackItems.map((tool) => (
-                                <Badge key={tool} variant="secondary">{tool}</Badge>
+                                <ToolBadge key={tool.name} {...tool} />
                             ))}
                         </div>
                     </div>
 
                     <div className="group bento-card md:col-span-12 p-6 border border-border/50 rounded-3xl transition-all duration-300 hover:bg-black/2 hover:shadow-xl hover:shadow-primary/5">
                         <h3 className="text-sm font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
-                            <FiBox className="w-4 h-4" /> Tools
+                            <FiBox className="w-4 h-4" /> Daily Apps
                         </h3>
                         <div className="flex flex-wrap gap-2">
                             {toolsItems.map((tool) => (
-                                <Badge key={tool} variant="secondary">{tool}</Badge>
+                                <ToolBadge key={tool.name} {...tool} />
                             ))}
                         </div>
                     </div>

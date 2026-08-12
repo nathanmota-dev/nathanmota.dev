@@ -1,5 +1,24 @@
-import { FaGithub, FaLinkedin, FaSpotify } from "react-icons/fa";
-import { SiX } from "react-icons/si";
+import { FaGithub, FaLinkedin, FaSpotify, FaWindows } from "react-icons/fa";
+import { LuFish, LuPencil } from "react-icons/lu";
+import {
+    SiAmazonwebservices,
+    SiAnki,
+    SiCloudflare,
+    SiDiscord,
+    SiDocker,
+    SiFigma,
+    SiLinux,
+    SiMongodb,
+    SiNotion,
+    SiObsidian,
+    SiOpenai,
+    SiPostman,
+    SiVercel,
+    SiWarp,
+    SiX,
+    SiZedindustries,
+} from "react-icons/si";
+import { VscVscode } from "react-icons/vsc";
 
 export const RESUME_DATA = {
     name: "Nathan Mota",
@@ -149,21 +168,38 @@ export const RESUME_DATA = {
             "32gb DDR5 6000mhz",
             "GTX 1660",
             "Water Cooler Aura 240mm",
-            "2tb M.2 NVMe",
-            "500gb Sata",
+            "2TB M.2 NVMe + 500GB SATA",
+            "AOC G4 24G4 180Hz",
             "Aula F75",
             "Delux M600 / Zowie EC2-C",
         ],
         personalStackItems: [
-            "Windows 11",
-            "Cursor",
-            "WSL2",
-            "Codex",
-            "Gemini CLI",
-            "Vercel",
+            { name: "Linux", icon: SiLinux, color: "#E95420" },
+            { name: "Windows 11", icon: FaWindows, color: "#0078D4" },
+            { name: "Zed", icon: SiZedindustries, color: "#888888" },
+            { name: "Orca", icon: LuFish, color: "#888888" },
+            { name: "Pencil", icon: LuPencil, color: "#F59E0B" },
+            { name: "Cloudflare", icon: SiCloudflare, color: "#F38020" },
+            { name: "Vercel", icon: SiVercel, color: "#888888" },
+            { name: "Codex", icon: SiOpenai, color: "#10A37F" },
         ],
-        workStackItems: ["Ubuntu", "VS Code", "Docker", "Figma", "AWS"],
-        toolsItems: ["Notion", "Obsidian", "Insomnia", "Discord", "Spotify"],
+        workStackItems: [
+            { name: "Linux", icon: SiLinux, color: "#E95420" },
+            { name: "VS Code", icon: VscVscode, color: "#007ACC" },
+            { name: "Warp", icon: SiWarp, color: "#01A4FF" },
+            { name: "Docker", icon: SiDocker, color: "#2496ED" },
+            { name: "Figma", icon: SiFigma, color: "#F24E1E" },
+            { name: "AWS", icon: SiAmazonwebservices, color: "#FF9900" },
+            { name: "MongoDB Compass", icon: SiMongodb, color: "#47A248" },
+        ],
+        toolsItems: [
+            { name: "Notion", icon: SiNotion, color: "#888888" },
+            { name: "Obsidian", icon: SiObsidian, color: "#7C3AED" },
+            { name: "Discord", icon: SiDiscord, color: "#5865F2" },
+            { name: "Spotify", icon: FaSpotify, color: "#1DB954" },
+            { name: "Postman", icon: SiPostman, color: "#FF6C37" },
+            { name: "Anki", icon: SiAnki, color: "#00A8E8" },
+        ],
     },
     projects: [
         {
