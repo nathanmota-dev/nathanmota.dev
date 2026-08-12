@@ -30,7 +30,7 @@ export default function Articles() {
                                 </div>
                             </CardHeader>
                             <CardContent className="mt-2 flex flex-wrap gap-2">
-                                {article.tags?.map((tag: any) => (
+                                {article.tags?.map((tag) => (
                                     <Badge
                                         variant="secondary"
                                         className="align-middle text-xs"

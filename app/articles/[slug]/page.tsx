@@ -2,9 +2,10 @@
 import { Article } from "@/components/article/article";
 import { getArticleData } from "@/utils/articles";
 import Link from "next/link";
+import type { ArticlePageProps, ArticleTagProps } from "@/types/article";
 
 
-function Tag({ tag }: { tag: string }) {
+function Tag({ tag }: ArticleTagProps) {
     return (
         <div className="text-muted-foreground border-border bg-muted/40 flex size-4 w-fit items-center justify-center rounded-full border px-2 py-3 text-xs">
             #{tag}
@@ -14,9 +15,7 @@ function Tag({ tag }: { tag: string }) {
 
 export default async function ArticlePage({
     params,
-}: {
-    params: Promise<{ slug: string }>;
-}) {
+}: ArticlePageProps) {
     const { slug } = await params;
 
     let articleData;

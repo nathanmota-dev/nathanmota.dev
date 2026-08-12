@@ -1,15 +1,5 @@
 import React from "react";
-
-type Variant = "default" | "outline";
-type Size = "default" | "icon";
-
-export interface ButtonProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    className?: string;
-    variant?: Variant;
-    size?: Size;
-    asChild?: boolean;
-}
+import type { ButtonProps } from "@/types/button";
 
 function joinClasses(...classes: Array<string | undefined>) {
     return classes.filter(Boolean).join(" ");

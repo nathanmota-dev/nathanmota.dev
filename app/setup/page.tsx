@@ -1,30 +1,9 @@
-import Badge from "@/components/badge/badge";
+import ToolBadge from "@/components/tool-badge/tool-badge";
 import { RESUME_DATA } from "@/data/resume-data";
 import Image from "next/image";
 import { FiBox } from "react-icons/fi";
 import { PiStackSimpleBold } from "react-icons/pi";
 import { SlScreenDesktop } from "react-icons/sl";
-import type { CSSProperties } from "react";
-import type { IconType } from "react-icons";
-
-type ToolBadgeProps = {
-    name: string;
-    icon: IconType;
-    color: string;
-};
-
-function ToolBadge({ name, icon: Icon, color }: ToolBadgeProps) {
-    return (
-        <Badge
-            variant="secondary"
-            className="cursor-pointer gap-1.5 transition-colors duration-200 hover:border-[var(--tool-color)] hover:text-[var(--tool-color)]"
-            style={{ "--tool-color": color } as CSSProperties}
-        >
-            <Icon aria-hidden="true" className="size-3.5" />
-            {name}
-        </Badge>
-    );
-}
 
 export default function Setup() {
     const { specsItems, personalStackItems, workStackItems, toolsItems } = RESUME_DATA.setup;

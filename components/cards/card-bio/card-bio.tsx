@@ -1,31 +1,5 @@
 import Link from "next/link";
-import React from "react";
-
-type BioIcon = React.ComponentType<{ className?: string }>;
-
-interface BaseProps {
-    className?: string;
-    href: string;
-    external?: boolean;
-    icon: BioIcon;
-    iconClassName?: string;
-    iconHoverClassName?: string;
-    containerHoverClassName?: string;
-}
-
-interface SocialProps extends BaseProps {
-    variant: "social";
-    text: string;
-}
-
-interface ContentProps extends BaseProps {
-    variant: "content";
-    title: string;
-    text: string;
-    descriptionClassName?: string;
-}
-
-export type CardBioProps = SocialProps | ContentProps;
+import type { CardBioProps } from "@/types/card-bio";
 
 function joinClasses(...classes: Array<string | undefined>) {
     return classes.filter(Boolean).join(" ");

@@ -39,5 +39,3 @@ export const contactSchema = z.object({
             `Write a message with at most ${CONTACT_FIELD_LIMITS.description.max} characters.`,
         ),
 });
-
-export type ContactFormValues = z.infer<typeof contactSchema>;

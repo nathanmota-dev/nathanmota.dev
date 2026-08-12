@@ -1,14 +1,12 @@
 "use client";
 
-export type ProjectFilterType = "all" | "fullstack" | "frontend" | "backend";
-
-interface SegmentedControlProps {
-    activeFilter: ProjectFilterType;
-    onFilterChange: (filter: ProjectFilterType) => void;
-}
+import type {
+    ProjectFilterOption,
+    SegmentedControlProps,
+} from "@/types/segmented-control";
 
 export function SegmentedControl({ activeFilter, onFilterChange }: SegmentedControlProps) {
-    const filters: { label: string; value: ProjectFilterType }[] = [
+    const filters: ProjectFilterOption[] = [
         { label: "All", value: "all" },
         { label: "Fullstack", value: "fullstack" },
         { label: "Frontend", value: "frontend" },

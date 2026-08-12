@@ -8,16 +8,7 @@ import {
     CardTitle,
 } from "@/components/cards/card/card";
 import { Badge } from "@/components/badge/badge";
-
-interface ExpandedProjectCardProps {
-    title: string;
-    description: string;
-    tags: readonly string[];
-    image: string;
-    githubLink?: string;
-    deployLink?: string;
-    type: "frontend" | "backend" | "fullstack";
-}
+import type { ExpandedProjectCardProps } from "@/types/project-card";
 
 export function ExpandedProjectCard({
     title,

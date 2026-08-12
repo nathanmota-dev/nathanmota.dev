@@ -2,8 +2,9 @@
 
 import { useEffect } from "react";
 import { highlight } from "sugar-high";
+import type { ArticleProps } from "@/types/article";
 
-export function Article({ html }: { html: string }) {
+export function Article({ html }: ArticleProps) {
     const handleFormatCode = () => {
         const codes = document.querySelectorAll("pre code");
         codes.forEach((code) => {

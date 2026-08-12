@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { ExpandedProjectCard } from "@/components/cards/card-project-expanded/card-project-expanded";
 import { RESUME_DATA } from "@/data/resume-data";
-import { ProjectFilterType, SegmentedControl } from "@/components/segmented-control/segmented-control";
+import { SegmentedControl } from "@/components/segmented-control/segmented-control";
+import type { ProjectFilterType } from "@/types/segmented-control";
 
 export default function Projects() {
     const [activeFilter, setActiveFilter] = useState<ProjectFilterType>("all");

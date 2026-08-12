@@ -1,11 +1,5 @@
 import React from "react";
-
-type Variant = "default" | "secondary";
-
-export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-    className?: string;
-    variant?: Variant;
-}
+import type { BadgeProps } from "@/types/badge";
 
 function joinClasses(...classes: Array<string | undefined>) {
     return classes.filter(Boolean).join(" ");

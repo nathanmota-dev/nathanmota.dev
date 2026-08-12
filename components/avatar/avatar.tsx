@@ -1,23 +1,12 @@
 "use client"
 
 import React from "react";
-
-interface BaseProps extends React.HTMLAttributes<HTMLDivElement> {
-    className?: string;
-}
-
-interface AvatarImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-    className?: string;
-}
-
-type AvatarStatus = "idle" | "loading" | "loaded" | "error";
-
-interface AvatarContextValue {
-    hasSrc: boolean;
-    status: AvatarStatus;
-    setHasSrc: (hasSrc: boolean) => void;
-    setStatus: (status: AvatarStatus) => void;
-}
+import type {
+    AvatarContextValue,
+    AvatarImageProps,
+    AvatarProps,
+    AvatarStatus,
+} from "@/types/avatar";
 
 const AvatarContext = React.createContext<AvatarContextValue | null>(null);
 
@@ -25,7 +14,7 @@ function joinClasses(...classes: Array<string | undefined>) {
     return classes.filter(Boolean).join(" ");
 }
 
-export function Avatar({ className, ...props }: BaseProps) {
+export function Avatar({ className, ...props }: AvatarProps) {
     const [hasSrc, setHasSrc] = React.useState(false);
     const [status, setStatus] = React.useState<AvatarStatus>("idle");
 
@@ -74,7 +63,7 @@ export function AvatarImage({ className, alt = "", src, onLoad, onError, ...prop
     );
 }
 
-export function AvatarFallback({ className, ...props }: BaseProps) {
+export function AvatarFallback({ className, ...props }: AvatarProps) {
     const context = React.useContext(AvatarContext);
     const shouldShowFallback = !context || !context.hasSrc || context.status === "error";
 

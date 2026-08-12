@@ -9,8 +9,8 @@ import Image from "next/image";
 import {
     CONTACT_FIELD_LIMITS,
     contactSchema,
-    type ContactFormValues,
 } from "@/schema/contact-schema";
+import type { ContactFormValues, ContactSubmitStatus } from "@/types/contact";
 
 const isHoneypotFilled = (form: HTMLFormElement) => {
     const honeyValue = new FormData(form).get("_honey");
@@ -22,7 +22,7 @@ export default function Contact() {
     const formElementRef = useRef<HTMLFormElement>(null);
     const hasSubmittedRef = useRef(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "success">("idle");
+    const [submitStatus, setSubmitStatus] = useState<ContactSubmitStatus>("idle");
 
     useEffect(() => {
         const root = document.documentElement;

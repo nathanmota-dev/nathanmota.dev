@@ -4,18 +4,12 @@ import path from "path";
 import moment from "moment";
 import { remark } from "remark";
 import html from "remark-html";
-
-export type Article = {
-    id: string;
-    tags: string[];
-    title: string;
-    date: string;
-};
+import type { Article } from "@/types/article";
 
 const ARTICLES_DIR = path.join(process.cwd(), "articles");
 
 export function getAllTags() {
-    let tags = new Set();
+    const tags = new Set();
     const files = fs.readdirSync(ARTICLES_DIR);
 
     for (const file of files) {
@@ -34,7 +28,7 @@ export function getAllTags() {
     return Array.from(tags);
 }
 
-export function getArticles() {
+export function getArticles(): Article[] {
     const files = fs.readdirSync(ARTICLES_DIR);
 
     const allArticlesData = files.map((file) => {

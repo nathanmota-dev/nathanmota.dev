@@ -6,15 +6,9 @@ import {
     CardTitle,
 } from "@/components/cards/card/card";
 import { Badge } from "@/components/badge/badge";
+import type { ProjectCardProps } from "@/types/project-card";
 
-interface Props {
-    title: string;
-    description: string;
-    tags: readonly string[];
-    link?: string;
-}
-
-export function ProjectCard({ title, description, tags, link }: Props) {
+export function ProjectCard({ title, description, tags, link }: ProjectCardProps) {
     return (
         <Card className="group flex h-full flex-col overflow-hidden p-3 transition-all duration-300 hover:bg-black/2 hover:shadow-xl hover:shadow-primary/5">
             <CardHeader className="">
