@@ -36,7 +36,7 @@ export const RESUME_DATA = {
     personalWebsiteUrl: "#",
     initialPhrase: "Your next big application needs a solid foundation and an amazing interface. Let’s talk and build something real.",
     contact: {
-        email: "nathansmota@gmail.com",
+        email: "hello@nathanmota.dev",
         tel: "+55 16 99993-6596",
         social: [
             {
