@@ -8,6 +8,7 @@ import { Badge } from "@/components/badge/badge";
 import CardBio from "@/components/cards/card-bio/card-bio";
 import { RESUME_DATA } from "@/data/resume-data";
 import MyGithubCalendar from "@/components/github-calendar/github-calendar";
+import { DownloadResumeButton } from "@/components/download-resume-button/download-resume-button";
 
 export default function Home() {
   const techStack = RESUME_DATA.techStack;
@@ -37,13 +38,7 @@ export default function Home() {
               >
                 View Resume
               </Link>
-              <a
-                href="/cv/curriculum.pdf"
-                download={resumeDownloadName}
-                className="w-full flex justify-center px-6 py-2.5 border border-border/50 rounded-3xl font-medium text-sm transition-all duration-300 hover:bg-black/2 hover:shadow-xl hover:shadow-primary/5 active:scale-[1.02]"
-              >
-                Download Resume
-              </a>
+              <DownloadResumeButton fileName={resumeDownloadName} />
             </div>
           </div>
           <div className="md:col-span-4 relative group">
