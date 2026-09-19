@@ -10,6 +10,10 @@ export function Article({ html }: ArticleProps) {
         codes.forEach((code) => {
             const html = highlight(code.textContent as string);
             code.innerHTML = html;
+
+            code.querySelectorAll<HTMLElement>(".sh__line").forEach((line, index) => {
+                line.dataset.line = String(index + 1);
+            });
         });
 
         const titles = document.querySelectorAll("h2");

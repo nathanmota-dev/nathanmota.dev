@@ -7,7 +7,7 @@ import type { ArticlePageProps, ArticleTagProps } from "@/types/article";
 
 function Tag({ tag }: ArticleTagProps) {
     return (
-        <div className="text-muted-foreground border-border bg-muted/40 flex size-4 w-fit items-center justify-center rounded-full border px-2 py-3 text-xs">
+        <div className="article-tag flex size-4 w-fit items-center justify-center rounded-full border px-2 py-3 text-xs">
             #{tag}
         </div>
     );

@@ -106,19 +106,91 @@ article blockquote {
 }
 
 article :not(pre)>code {
-  @apply mx-1 select-all text-nowrap rounded px-1.5 py-0.5 text-sm text-zinc-950 ring-1 ring-zinc-300 bg-zinc-50;
+  @apply mx-1 select-all text-nowrap rounded px-1.5 py-0.5 text-sm;
+  background-color: #f5f3ff;
+  color: #5b21b6;
+  box-shadow: 0 0 0 1px #ddd6fe;
+  font-family: var(--font-geist-mono), monospace;
 }
 
 .dark article :not(pre)>code {
-  @apply dark:text-zinc-200 dark:ring-zinc-600;
+  background-color: #27272a;
+  color: #ddd6fe;
+  box-shadow: 0 0 0 1px #52525b;
 }
 
 article pre {
-  @apply overflow-x-auto p-4 text-sm ring-1 ring-zinc-300 border border-zinc-950 rounded-3xl text-black;
+  --sh-class: #7c3aed;
+  --sh-identifier: #18181b;
+  --sh-sign: #71717a;
+  --sh-string: #047857;
+  --sh-keyword: #be123c;
+  --sh-comment: #71717a;
+  --sh-jsxliterals: #0369a1;
+  --sh-property: #b45309;
+  --sh-entity: #7c3aed;
+  @apply overflow-x-auto rounded-3xl border border-zinc-300 bg-zinc-50 py-3 text-sm text-zinc-950 shadow-sm;
+  font-family: var(--font-geist-mono), monospace;
 }
 
 .dark article pre {
-  @apply dark:text-white dark:ring-zinc-500;
+  --sh-class: #c4b5fd;
+  --sh-identifier: #e4e4e7;
+  --sh-sign: #a1a1aa;
+  --sh-string: #6ee7b7;
+  --sh-keyword: #fda4af;
+  --sh-comment: #a1a1aa;
+  --sh-jsxliterals: #7dd3fc;
+  --sh-property: #fcd34d;
+  --sh-entity: #c4b5fd;
+  background-color: #27272a;
+  border-color: #52525b;
+  color: #f4f4f5;
+  box-shadow: none;
+}
+
+article pre code {
+  display: block;
+  min-width: max-content;
+  font-size: 0;
+  line-height: 0;
+}
+
+article pre .sh__line {
+  display: block;
+  min-height: 1.375rem;
+  padding-right: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+}
+
+article pre .sh__line::before {
+  content: attr(data-line);
+  display: inline-block;
+  width: 3.25rem;
+  margin-right: 1rem;
+  padding-right: 0.875rem;
+  color: #a1a1aa;
+  border-right: 1px solid #d4d4d8;
+  text-align: right;
+  user-select: none;
+}
+
+.dark article pre .sh__line::before {
+  color: #71717a;
+  border-right-color: #3f3f46;
+}
+
+.article-tag {
+  background-color: #f5f3ff;
+  border-color: #ddd6fe;
+  color: #5b21b6;
+}
+
+.dark .article-tag {
+  background-color: #27272a;
+  border-color: #52525b;
+  color: #ddd6fe;
 }
 
 article a {
