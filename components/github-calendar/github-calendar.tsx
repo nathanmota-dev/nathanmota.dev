@@ -42,7 +42,7 @@ export default function MyGithubCalendar() {
                     blockMargin={3}
                     fontSize={12}
                     labels={{
-                        totalCount: "{{count}} contribuições",
+                        totalCount: "{{count}} contributions",
                     }}
                 />
             </div>
