@@ -34,10 +34,10 @@ export default function Home() {
             <p className="text-muted-foreground text-base max-w-xl leading-relaxed">
               {resume.initialPhrase}
             </p>
-            <div className="flex justify-center items-center gap-2">
+            <div className="grid grid-cols-2 md:flex justify-center items-center gap-2">
               <Link
                 href="/cv"
-                className="w-full flex justify-center px-6 py-2.5 border border-border/50 rounded-2xl font-medium text-sm transition-all duration-300 hover:bg-black/2 hover:shadow-xl hover:shadow-primary/5 active:scale-[1.02]"
+                className="w-full flex justify-center px-1 md:px-6 py-2.5 border border-border/50 rounded-2xl font-medium text-sm whitespace-nowrap md:whitespace-normal transition-all duration-300 hover:bg-black/2 hover:shadow-xl hover:shadow-primary/5 active:scale-[1.02]"
               >
                 {t("resume")}
               </Link>

@@ -38,7 +38,7 @@ export function DownloadResumeButton({ fileName }: DownloadResumeButtonProps) {
     <button
       type="button"
       onClick={handleDownload}
-      className="w-full flex justify-center px-6 py-2.5 border border-border/50 rounded-2xl font-medium text-sm cursor-pointer transition-all duration-300 hover:bg-black/2 hover:shadow-xl hover:shadow-primary/5 active:scale-[1.02]"
+      className="w-full flex justify-center px-1 md:px-6 py-2.5 border border-border/50 rounded-2xl font-medium text-sm whitespace-nowrap md:whitespace-normal cursor-pointer transition-all duration-300 hover:bg-black/2 hover:shadow-xl hover:shadow-primary/5 active:scale-[1.02]"
     >
       {t("download")}
     </button>
