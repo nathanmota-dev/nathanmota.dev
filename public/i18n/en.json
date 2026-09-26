@@ -1,0 +1,207 @@
+{
+  "metadata": {
+    "title": "Nathan Mota | Portfolio",
+    "description": "Personal portfolio website"
+  },
+  "nav": {
+    "projects": "projects",
+    "articles": "articles",
+    "contact": "contact",
+    "home": "Back to home",
+    "language": "Language"
+  },
+  "home": {
+    "resume": "View Resume",
+    "profile": "Profile photo",
+    "stack": "Tech Stack",
+    "setup": "My Setup",
+    "contact": "Get in touch",
+    "articles": "Latest Articles",
+    "articlesDescription": "Read the newest posts about engineering, product building and developer workflow.",
+    "playlist": "Spotify Playlist",
+    "playlistDescription": "A curated playlist to keep focus while coding, planning and shipping features."
+  },
+  "common": {
+    "code": "Code",
+    "theme": "Toggle theme",
+    "download": "Download Resume",
+    "downloadError": "Unable to download resume. Please try again.",
+    "notFound": "Page not found"
+  },
+  "projects": {
+    "title": "Projects",
+    "empty": "No projects were found for this category.",
+    "all": "All",
+    "fullstack": "Fullstack",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "preview": "Preview of {title}",
+    "github": "View code on GitHub",
+    "online": "View live project"
+  },
+  "setup": {
+    "title": "My Setup",
+    "photo": "My workspace",
+    "specs": "Specs",
+    "personal": "Personal Environment",
+    "work": "Work Environment",
+    "apps": "Daily Apps"
+  },
+  "cv": {
+    "about": "About",
+    "work": "Work Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "projects": "Projects",
+    "phone": "Call"
+  },
+  "contact": {
+    "title": "Contact",
+    "talk": "Talk to me",
+    "intro": "Fill out the form to contact me by email.",
+    "subject": "New portfolio contact",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "description": "Description",
+    "messagePlaceholder": "Write your message",
+    "sending": "Sending...",
+    "send": "Send message",
+    "success": "Form submitted successfully. I will contact you soon.",
+    "phone": "Cell phone",
+    "frame": "Contact form submission",
+    "validation": {
+      "nameMin": "Enter your full name.",
+      "nameMax": "Enter your name with at most {max} characters.",
+      "email": "Enter a valid email address.",
+      "emailMax": "Enter an email address with at most {max} characters.",
+      "descriptionMin": "Write a message with at least {min} characters.",
+      "descriptionMax": "Write a message with at most {max} characters."
+    }
+  },
+  "articles": {
+    "title": "Articles",
+    "missing": "This article doesn't exist.",
+    "other": "Read something else",
+    "posts": {
+      "docker-in-practice": {
+        "title": "Docker: What It Is and How It Works",
+        "content": "### What Is Docker?\n\nImagine the following situation: you develop a fullstack application using Node.js version 18, but the server where the application will be deployed only supports version 14. How do you solve this problem? That’s where Docker comes in.\n\nDocker allows you to create your application and package it into a *container*, which can be understood as a kind of lightweight virtual machine. Inside this container, you define the version of Node.js (or any other technology) that the application needs to run. This way, the application can be executed in any environment, regardless of the server configuration, since the container includes all the necessary environment specifications, such as the Node.js version, React, PostgreSQL, etc.\n\nA *container* is a way of packaging the application with all its dependencies into a single unit. This allows the application to run anywhere Docker is installed, making execution more flexible and consistent.\n\n### So Is a Docker Container the Same as a Virtual Machine?\n\nNo. Although containers and virtual machines share some similarities, such as application isolation, they work differently. While a virtual machine simulates an entire physical hardware environment, including the operating system, a container shares the operating system kernel with the host system, making it much lighter.\n\nWhen you install a virtual machine, it requires a full operating system, which increases resource consumption. Docker, on the other hand, is lighter because the container includes only what your application needs, such as specific versions of Node.js, React, etc., while sharing the host system’s kernel. Therefore, on the machine running the container, you don’t need to worry about Node.js versions or other application dependencies, since everything is already inside the container.\n\n### How Does Resource Allocation Work in Docker?\n\nMemory allocation in Docker is handled dynamically. This means Docker allocates the amount of memory the application needs as required. If the application needs more memory, Docker allocates more; if it needs less, the memory is released. This contributes to better resource management and more efficient memory usage.\n\n### Should I Put My Entire Application in a Single Container?\n\nNot necessarily. With Docker, you can split your application into multiple containers. For example, you can separate the front-end, back-end, and database into different containers. This makes your application more scalable and easier to maintain. If you need to update something in the front-end, you can simply stop the front-end container, make the changes, and restart only that container without affecting the back-end or the database.\n\n### Advantages of Using Docker\n\n- **Environment Consistency**: Docker ensures that the application works the same way everywhere because the runtime environment is identical, regardless of the physical machine.\n- **Isolation**: Each container is isolated from the system and from other containers, preventing dependency conflicts between different applications.\n- **Ease of Development and Deployment**: With Docker, you can configure your entire development and production environment using a simple configuration file, the *Dockerfile*, and replicate that environment on any machine.\n\n### How Does the *Dockerfile* Work?\n\nThe *Dockerfile* is the file where you describe how Docker should build the container for your application. In it, you can define which base image to use (for example, a specific Node.js version), which dependencies to install, which ports to expose, and other configurations. A basic example of a *Dockerfile* for a Node.js application would be:\n\n```dockerfile\n# Use the Node.js version 18 base image\nFROM node:18\n\n# Set the working directory\nWORKDIR /app\n\n# Copy package.json and install dependencies\nCOPY package*.json ./\nRUN npm install\n\n# Copy the rest of the application\nCOPY . .\n\n# Expose port 3000\nEXPOSE 3000\n\n# Command to run the application\nCMD [\"npm\", \"start\"]\n```\n\nWith this Dockerfile, you ensure that the application is always built with the same Node.js version and the correct dependencies.\n\n### Conclusion\n\nDocker has become an essential tool in modern development by providing a practical way to isolate and package applications into consistent and reproducible environments. This makes development, deployment, and application scalability much simpler and more effective."
+      },
+      "generics-in-typescript": {
+        "title": "TypeScript: Advanced Generics and Conditional Types",
+        "content": "TypeScript is a powerful language that brings static typing to JavaScript, allowing developers to write safer and more scalable code. Among the most important features of TypeScript are **generics** and **conditional types**. In this post, we will explore how to use these concepts to improve the quality of your code.\n\n### What Are Generics?\n\nGenerics allow you to write functions and classes that work with different types without losing type safety. This is especially useful when you don’t know in advance which type will be used.\n\n#### Example of Generics\n\nLet’s consider a simple function that returns the first element of an array:\n\n```typescript\nfunction firstElement<T>(array: T[]): T | undefined {\n    return array[0];\n}\n\nconst numberValue = firstElement([1, 2, 3]); // type: number\nconst textValue = firstElement(['a', 'b', 'c']); // type: string\n```\n\n### Conditional Types\n\nConditional types in TypeScript allow you to define types based on a condition. The basic syntax is `A extends B ? C : D`, where if `A` is a subtype of `B`, the resulting type will be `C`; otherwise, it will be `D`.\n\n#### Example of Conditional Types\n\nLet’s create a type that returns `true` if the type is an array and `false` otherwise:\n\n```typescript\ntype IsArray<T> = T extends any[] ? true : false;\n\ntype Test1 = IsArray<number[]>; // type: true\ntype Test2 = IsArray<number>; // type: false\n```\n\n### Combining Generics and Conditional Types\n\nYou can combine generics and conditional types to create more dynamic functions. See the example below, where we create a function that accepts an array and returns the type of its first element:\n\n```typescript\nfunction typeOfFirstElement<T>(array: T[]): T extends (infer U)[] ? U : never {\n    return array[0] as any;\n}\n\nconst type1 = typeOfFirstElement([1, 2, 3]); // type: number\nconst type2 = typeOfFirstElement(['a', 'b', 'c']); // type: string\n```\n\n### Conclusion\n\nAdvanced generics and conditional types in TypeScript are powerful tools that allow you to write more flexible and safer code. By mastering these concepts, you can significantly improve the quality and maintainability of your code."
+      }
+    }
+  },
+  "github": {
+    "title": "GitHub Activity",
+    "contributions": "{{count}} contributions",
+    "less": "Less",
+    "more": "More",
+    "loading": "Loading GitHub activity...",
+    "error": "Unable to load GitHub activity."
+  },
+  "resume": {
+    "position": "Software Engineer",
+    "location": "Ribeirão Preto, SP, Brasil",
+    "about": "Full-Stack Developer passionate about solving problems!",
+    "summary": "Full-Stack Developer with over 2 years of experience building complete web applications, from Front-End to Back-End. Graduated in Information Systems from UFU, I started my journey as an IT Technician at Unesp FCAV, where I developed my first programming projects. Currently, I work on building scalable solutions, system integrations, and applying software engineering best practices.",
+    "initialPhrase": "Your next big application needs a solid foundation and an amazing interface. Let’s talk and build something real.",
+    "education": {
+      "item0": {
+        "school": "Federal University of Uberlândia (UFU)",
+        "degree": "Information Systems"
+      },
+      "item1": {
+        "school": "São Paulo State University (Unesp)",
+        "degree": "Computer Technician (IT)"
+      }
+    },
+    "work": {
+      "item0": {
+        "title": "Full-Stack Developer (Front-End Focus)",
+        "end": "Present",
+        "badge": "Remote",
+        "description": "Worked on the development and maintenance of web applications across multiple projects, contributing in different contexts and technology stacks.\n\n            Front-end: Refactored and modernized interfaces based on Figma layouts using Angular, HTML, CSS, JavaScript, and TypeScript. Developed reusable components, improved UI consistency, and enhanced overall user experience.\n\n            Back-end: Contributed to PHP and C# applications by creating and maintaining CRUD operations, fixing bugs, and refactoring legacy code to improve structure, readability, and performance.\n\n            Cloud integration: Worked with AWS services such as S3 and EC2 to support application infrastructure and deployments."
+      },
+      "item1": {
+        "title": "Full-Stack Developer",
+        "end": "2025",
+        "badge": "Remote",
+        "description": "Supported the development of SDF simulation features through web interfaces, contributing to both front-end and back-end improvements.\n\n            Modernized legacy architecture by transitioning older JavaScript/PHP implementations into more structured and maintainable solutions.\n\n            Optimized MySQL queries to improve system performance and data retrieval efficiency.\n\n            Collaborated across teams to ensure stable integrations and continuous improvements in application reliability."
+      },
+      "item2": {
+        "title": "Full-Stack Developer",
+        "end": "2025",
+        "badge": "Hybrid",
+        "description": "Participated in the X-RAT platform project, focused on analyzing software failure groups and identifying root causes.\n\n            Front-end (main responsibility): Designed and implemented the user interface using React, Vite, Tailwind CSS, React Query, and Chart.js, prioritizing performance, usability, and data visualization clarity.\n\n            Back-end: Developed features using Python and FastAPI for processing dataframes and EVTX log files.\n\n            Integrated front-end and back-end systems to enable automated reliability report generation and visualization."
+      },
+      "item3": {
+        "title": "Web Programming Instructor",
+        "end": "2024",
+        "badge": "On-site",
+        "description": "Taught fundamental computer science concepts to teenagers aged 12 and above.\n\n            Delivered practical classes on HTML, CSS, and introductory Bootstrap, guiding students step by step in building complete websites.\n\n            Supervised individual and group final projects, encouraging collaboration, creativity, and real-world application of knowledge.\n\n            Promoted digital inclusion and foundational programming skills in an academic environment."
+      }
+    },
+    "projects": {
+      "item0": {
+        "title": "Video Lecture Platform with Distributed System",
+        "description": "Online learning platform with queue management for video uploads, cloud storage, and a course authentication and management system."
+      },
+      "item1": {
+        "title": "Monte Bot - Robotics Laboratory",
+        "description": "Institutional website with an application form and authentication using NextAuth (GitHub login). Includes a dashboard for viewing applicants and their data."
+      },
+      "item2": {
+        "title": "MedAgenda",
+        "description": "Med Agenda is a project developed for managing a medical clinic, including the management of patients, doctors, and appointments."
+      },
+      "item3": {
+        "title": "Blog with Next",
+        "description": "The goal of the blog is to allow the creation of new posts dynamically, using MDX files where each created MDX file automatically generates a route."
+      },
+      "item4": {
+        "title": "Full Stack Dashboard",
+        "description": "Dashboard built with Next.js featuring User CRUD, Authentication, Encryption, Different User Permissions, and Data Retrieval on Access"
+      },
+      "item5": {
+        "title": "Tech Vantage - Corporate Website",
+        "description": "Final Project for Internet Programming developing a functional system with requirements like Form Registration and Data Printing"
+      },
+      "item6": {
+        "title": "Todo List - MERN Stack",
+        "description": "POC - Todo List made to perform the 4 CRUD operations using a non-relational database and includes a complete Login System"
+      },
+      "item7": {
+        "title": "Landing Page Meow Café",
+        "description": "Project proposed by Codante where the goal was to bring the Meow Café design to life, transforming it into a functional and responsive page without using frameworks."
+      },
+      "item8": {
+        "title": "API - FastAPI",
+        "description": "API built with FastAPI with the goal of creating a robust and modularized API in Python, later reused in my Scientific Initiation."
+      },
+      "item9": {
+        "title": "Landing Page Insove Medical Healthcare",
+        "description": "Landing Page created using TailwindCSS designed for medical clinics, aiming to provide a good experience for doctors and patients."
+      },
+      "item10": {
+        "title": "Name Finder",
+        "description": "Final Project for Internet Programming where the goal was to create a name search engine consuming an API on the backend, processing the data, and displaying it on the frontend with a search history."
+      },
+      "item11": {
+        "title": "Google Keep Clone",
+        "description": "Google Keep clone proposed to be done without frameworks, allowing you to make notes, pin notes, duplicate notes, and export notes to a CSV file."
+      },
+      "item12": {
+        "title": "API - Node Fastify",
+        "description": "API built with the goal of performing CRUD operations using a relational database."
+      },
+      "item13": {
+        "title": "Personal Portfolio V1",
+        "description": "First version of my portfolio focused on internationalization (i18n), Mobile-First responsive design, and Dark Mode support, showcasing my main projects and experiences."
+      }
+    }
+  }
+}

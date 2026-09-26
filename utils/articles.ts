@@ -2,6 +2,13 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import moment from "moment";
+import en from "@/public/i18n/en.json";
+import pt from "@/public/i18n/pt.json";
+
+function getLocalizedArticle(id: string, locale: string) {
+    const posts = (locale === "pt-BR" ? pt : en).articles.posts;
+    return posts[id as keyof typeof posts];
+}
 import { remark } from "remark";
 import html from "remark-html";
 import type { Article } from "@/types/article";
@@ -28,7 +35,7 @@ export function getAllTags() {
     return Array.from(tags);
 }
 
-export function getArticles(): Article[] {
+export function getArticles(locale = "en"): Article[] {
     const files = fs.readdirSync(ARTICLES_DIR);
 
     const allArticlesData = files.map((file) => {
@@ -39,7 +46,7 @@ export function getArticles(): Article[] {
 
         return {
             id,
-            title: matterResult.data.title,
+            title: getLocalizedArticle(id, locale)?.title ?? matterResult.data.title,
             tags: matterResult.data.tags,
             date: moment(matterResult.data.date).format("YYYY-MM-DD"),
         };
@@ -56,21 +63,21 @@ export function getArticles(): Article[] {
     });
 }
 
-export async function getArticleData(id: string) {
+export async function getArticleData(id: string, locale = "en") {
     const fullPath = path.join(ARTICLES_DIR, `${id}.md`);
     const fileContents = fs.readFileSync(fullPath, "utf-8");
     const matterResult = matter(fileContents);
     const processedContent = await remark()
         .use(html)
-        .process(matterResult.content);
+        .process(getLocalizedArticle(id, locale)?.content ?? matterResult.content);
     const contentHtml = processedContent.toString();
 
     return {
         id,
         contentHtml,
-        title: matterResult.data.title,
+        title: getLocalizedArticle(id, locale)?.title ?? matterResult.data.title,
         tags: matterResult.data.tags || [],
         location: matterResult.data.location || "",
-        date: moment(matterResult.data.date, "YYYY-MM-DD").format("MMMM  Do, YYYY"),
+        date: new Intl.DateTimeFormat(locale, {day: "numeric", month: "long", year: "numeric", timeZone: "UTC"}).format(new Date(matterResult.data.date)),
     };
 }

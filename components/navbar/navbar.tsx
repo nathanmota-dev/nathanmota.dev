@@ -1,4 +1,6 @@
-"use client"
+"use client";
+import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "../language-switcher/language-switcher"
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -7,48 +9,52 @@ import { Button } from "../button/button"
 import { ThemeToggle } from "../theme-toggle/theme-toggle"
 
 export default function Navbar() {
+    const t = useTranslations("nav");
     const pathname = usePathname()
     const isHome = pathname === "/"
 
     return (
         <div className="max-w-3xl mx-auto space-y-8 py-2 px-4 lg:px-0">
-            <nav className="flex flex-col md:flex-row items-center justify-between py-4">
+            <nav className="grid grid-cols-[1fr_auto] items-center gap-y-4 py-4 md:grid-cols-[1fr_auto_1fr]">
+                <div className="col-start-1 row-start-1 justify-self-start">
                 {isHome ? (
                     <div className="flex items-center font-display font-bold text-base md:text-lg">
                         Nathan Mota
                     </div>
                 ) : (
                     <Button asChild variant="outline" size="icon">
-                        <Link href="/" aria-label="Voltar para início">
+                        <Link href="/" aria-label={t("home")}>
                             <FiArrowLeft />
                         </Link>
                     </Button>
                 )}
-                <div className="flex items-center lg:gap-4 md:gap-6">
+                </div>
+                <div className="col-span-2 row-start-2 flex items-center justify-center gap-6 md:col-span-1 md:col-start-2 md:row-start-1">
                     <Link
                         href="/projects"
                         className={`nav-link ${pathname === "/projects" ? "active" : ""}`}
                     >
-                        /projects
+                        /{t("projects")}
                     </Link>
 
                     <Link
                         href="/articles"
                         className={`nav-link ${pathname === "/articles" ? "active" : ""}`}
                     >
-                        /articles
+                        /{t("articles")}
                     </Link>
 
                     <Link
                         href="/contact"
                         className={`nav-link ${pathname === "/contact" ? "active" : ""}`}
                     >
-                        /contact
+                        /{t("contact")}
                     </Link>
-                    <div className="ml-2 sm:ml-0 flex justify-center">
+                </div>
+                    <div className="col-start-2 row-start-1 flex items-center justify-self-end gap-2 md:col-start-3">
+                        <LanguageSwitcher />
                         <ThemeToggle />
                     </div>
-                </div>
             </nav>
         </div>
     )

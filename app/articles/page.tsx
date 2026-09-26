@@ -1,18 +1,20 @@
+import { useLocale, useTranslations } from "next-intl";
 import { getArticles } from "@/utils/articles";
-import moment from "moment";
 import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/cards/card/card";
 import { Badge } from "@/components/badge/badge";
 import { Section } from "@/components/section/section";
 
 export default function Articles() {
-    const articles = getArticles();
+    const t = useTranslations("articles");
+    const locale = useLocale();
+    const articles = getArticles(locale);
 
     return (
         <main className="max-w-3xl mx-auto py-2 px-4 sm:px-0">
             <div className="py-4 flex justify-center text-center">
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] pb-6">
-                    Articles
+                    {t("title")}
                 </h2>
             </div>
             <Section className="flex flex-col gap-4">
@@ -25,7 +27,7 @@ export default function Articles() {
                                         {article.title}
                                     </h3>
                                     <div className="text-sm tabular-nums text-muted-foreground">
-                                        {moment(article.date).format("MMM YYYY")}
+                                        {new Intl.DateTimeFormat(locale, {month: "short", year: "numeric", timeZone: "UTC"}).format(new Date(article.date))}
                                     </div>
                                 </div>
                             </CardHeader>

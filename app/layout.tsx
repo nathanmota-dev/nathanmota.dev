@@ -1,3 +1,5 @@
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next"
@@ -15,26 +17,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Personal portfolio website",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("metadata");
+  return {title: t("title"), description: t("description")};
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
   return (
-    <html lang="en">
+    <html lang={locale} suppressHydrationWarning>
       <body
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <NextIntlClientProvider key={locale}>
         <Navbar />
         {children}
         <Footer />
         <Analytics />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

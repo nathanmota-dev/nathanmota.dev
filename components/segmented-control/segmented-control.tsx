@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import type {
     ProjectFilterOption,
@@ -6,11 +8,12 @@ import type {
 } from "@/types/segmented-control";
 
 export function SegmentedControl({ activeFilter, onFilterChange }: SegmentedControlProps) {
+    const t = useTranslations("projects");
     const filters: ProjectFilterOption[] = [
-        { label: "All", value: "all" },
-        { label: "Fullstack", value: "fullstack" },
-        { label: "Frontend", value: "frontend" },
-        { label: "Backend", value: "backend" },
+        { label: t("all"), value: "all" },
+        { label: t("fullstack"), value: "fullstack" },
+        { label: t("frontend"), value: "frontend" },
+        { label: t("backend"), value: "backend" },
     ];
 
     return (

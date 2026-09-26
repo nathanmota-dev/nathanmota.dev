@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import { IoMoonOutline } from "react-icons/io5";
 import { IoSunnyOutline } from "react-icons/io5";
@@ -15,6 +17,7 @@ function isThemeSetToDark() {
 }
 
 export function ThemeToggle() {
+    const t = useTranslations("common");
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
@@ -26,7 +29,8 @@ export function ThemeToggle() {
             document.documentElement.classList.remove("dark");
         }
 
-        setIsDarkMode(darkMode);
+        const frame = requestAnimationFrame(() => setIsDarkMode(darkMode));
+        return () => cancelAnimationFrame(frame);
     }, []);
 
     const toggleTheme = () => {
@@ -43,9 +47,10 @@ export function ThemeToggle() {
 
     return (
         <button
+            type="button"
             onClick={toggleTheme}
-            className="group relative flex items-center"
-            aria-label="Toggle theme"
+            className="group relative inline-flex size-8 shrink-0 items-center justify-center rounded-lg border border-border/50 bg-background text-foreground/80 outline-none transition-colors hover:bg-foreground/5 hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary"
+            aria-label={t("theme")}
         >
             {isDarkMode ? (
                 <IoMoonOutline

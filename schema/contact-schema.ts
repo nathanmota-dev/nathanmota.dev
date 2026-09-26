@@ -14,28 +14,15 @@ export const CONTACT_FIELD_LIMITS = {
     },
 } as const;
 
-export const contactSchema = z.object({
-    name: z
-        .string()
-        .min(CONTACT_FIELD_LIMITS.name.min, "Enter your full name.")
-        .max(
-            CONTACT_FIELD_LIMITS.name.max,
-            `Enter your name with at most ${CONTACT_FIELD_LIMITS.name.max} characters.`,
-        ),
-    email: z
-        .email("Enter a valid email address.")
-        .max(
-            CONTACT_FIELD_LIMITS.email.max,
-            `Enter an email address with at most ${CONTACT_FIELD_LIMITS.email.max} characters.`,
-        ),
-    description: z
-        .string()
-        .min(
-            CONTACT_FIELD_LIMITS.description.min,
-            `Write a message with at least ${CONTACT_FIELD_LIMITS.description.min} characters.`,
-        )
-        .max(
-            CONTACT_FIELD_LIMITS.description.max,
-            `Write a message with at most ${CONTACT_FIELD_LIMITS.description.max} characters.`,
-        ),
-});
+export function createContactSchema(t: (key: string, values?: Record<string, number>) => string) {
+    return z.object({
+        name: z.string().min(CONTACT_FIELD_LIMITS.name.min, t("nameMin"))
+            .max(CONTACT_FIELD_LIMITS.name.max, t("nameMax", {max: CONTACT_FIELD_LIMITS.name.max})),
+        email: z.email(t("email")).max(CONTACT_FIELD_LIMITS.email.max,
+            t("emailMax", {max: CONTACT_FIELD_LIMITS.email.max})),
+        description: z.string().min(CONTACT_FIELD_LIMITS.description.min,
+            t("descriptionMin", {min: CONTACT_FIELD_LIMITS.description.min}))
+            .max(CONTACT_FIELD_LIMITS.description.max,
+            t("descriptionMax", {max: CONTACT_FIELD_LIMITS.description.max})),
+    });
+}

@@ -1,3 +1,4 @@
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { Article } from "@/components/article/article";
 import { getArticleData } from "@/utils/articles";
@@ -17,10 +18,12 @@ export default async function ArticlePage({
     params,
 }: ArticlePageProps) {
     const { slug } = await params;
+    const locale = await getLocale();
+    const t = await getTranslations("articles");
 
     let articleData;
     try {
-        articleData = await getArticleData(slug);
+        articleData = await getArticleData(slug, locale);
     } catch (error) {
         if (!(error instanceof Error) || !("code" in error) || error.code !== "ENOENT") {
             throw error;
@@ -29,13 +32,13 @@ export default async function ArticlePage({
         return (
             <div className="flex flex-col items-center justify-center gap-6 py-16">
                 <h1 className="text-5xl max-sm:text-3xl">
-                    This article doesn&apos;t exist.
+                    {t("missing")}
                 </h1>
                 <Link
                     href="/articles"
                     className="text-foreground underline decoration-primary/70 underline-offset-4"
                 >
-                    Read something else
+                    {t("other")}
                 </Link>
             </div>
         );
