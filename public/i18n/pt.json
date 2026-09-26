@@ -1,0 +1,207 @@
+{
+  "metadata": {
+    "title": "Nathan Mota | Portfólio",
+    "description": "Portfólio pessoal"
+  },
+  "nav": {
+    "projects": "projetos",
+    "articles": "artigos",
+    "contact": "contato",
+    "home": "Voltar para o início",
+    "language": "Idioma"
+  },
+  "home": {
+    "resume": "Ver currículo",
+    "profile": "Foto de perfil",
+    "stack": "Tecnologias",
+    "setup": "Meu setup",
+    "contact": "Entre em contato",
+    "articles": "Últimos artigos",
+    "articlesDescription": "Leia os últimos posts sobre engenharia, construção de produtos e rotina de desenvolvimento.",
+    "playlist": "Playlist no Spotify",
+    "playlistDescription": "Uma seleção de músicas para manter o foco ao programar, planejar e entregar funcionalidades."
+  },
+  "common": {
+    "code": "Código",
+    "theme": "Alternar tema",
+    "download": "Baixar currículo",
+    "downloadError": "Não foi possível baixar o currículo. Tente novamente.",
+    "notFound": "Página não encontrada"
+  },
+  "projects": {
+    "title": "Projetos",
+    "empty": "Nenhum projeto encontrado nesta categoria.",
+    "all": "Todos",
+    "fullstack": "Fullstack",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "preview": "Prévia do projeto {title}",
+    "github": "Ver código no GitHub",
+    "online": "Acessar projeto online"
+  },
+  "setup": {
+    "title": "Meu setup",
+    "photo": "Meu espaço de trabalho",
+    "specs": "Especificações",
+    "personal": "Ambiente pessoal",
+    "work": "Ambiente de trabalho",
+    "apps": "Aplicativos do dia a dia"
+  },
+  "cv": {
+    "about": "Sobre",
+    "work": "Experiência profissional",
+    "education": "Formação",
+    "skills": "Habilidades",
+    "projects": "Projetos",
+    "phone": "Ligar"
+  },
+  "contact": {
+    "title": "Contato",
+    "talk": "Fale comigo",
+    "intro": "Preencha o formulário para entrar em contato comigo por e-mail.",
+    "subject": "Novo contato pelo portfólio",
+    "name": "Nome",
+    "namePlaceholder": "Seu nome",
+    "email": "E-mail",
+    "emailPlaceholder": "voce@exemplo.com",
+    "description": "Descrição",
+    "messagePlaceholder": "Escreva sua mensagem",
+    "sending": "Enviando...",
+    "send": "Enviar mensagem",
+    "success": "Formulário enviado com sucesso. Entrarei em contato em breve.",
+    "phone": "Celular",
+    "frame": "Envio do formulário de contato",
+    "validation": {
+      "nameMin": "Informe seu nome completo.",
+      "nameMax": "Informe um nome com no máximo {max} caracteres.",
+      "email": "Informe um endereço de e-mail válido.",
+      "emailMax": "Informe um e-mail com no máximo {max} caracteres.",
+      "descriptionMin": "Escreva uma mensagem com pelo menos {min} caracteres.",
+      "descriptionMax": "Escreva uma mensagem com no máximo {max} caracteres."
+    }
+  },
+  "articles": {
+    "title": "Artigos",
+    "missing": "Este artigo não existe.",
+    "other": "Leia outro artigo",
+    "posts": {
+      "docker-in-practice": {
+        "title": "Docker: o que é e como funciona",
+        "content": "### O que é Docker?\n\nImagine que você desenvolveu uma aplicação fullstack com Node.js 18, mas o servidor de produção usa a versão 14. Como resolver isso? É aí que entra o Docker.\n\nO Docker permite empacotar uma aplicação em um *container*, junto das dependências e configurações de que ela precisa. Você define, por exemplo, a versão do Node.js e os componentes necessários para executar a aplicação. Assim, ela pode rodar em diferentes ambientes com uma configuração consistente.\n\nUm *container* reúne a aplicação e suas dependências em uma unidade que pode ser executada onde o Docker estiver instalado.\n\n### Um container Docker é igual a uma máquina virtual?\n\nNão. Ambos oferecem isolamento, mas funcionam de formas diferentes. Uma máquina virtual simula um ambiente de hardware completo, com seu próprio sistema operacional. Um container compartilha o kernel do sistema hospedeiro, o que o torna mais leve.\n\nUma máquina virtual exige um sistema operacional completo e consome mais recursos. O container inclui o necessário para a aplicação, como o ambiente de execução e suas bibliotecas, compartilhando o kernel do hospedeiro. As versões das dependências ficam definidas no container.\n\n### Como funciona a alocação de recursos no Docker?\n\nO uso de memória acompanha a demanda da aplicação. Containers podem consumir os recursos disponíveis no hospedeiro, e você pode configurar limites de memória e CPU para controlar esse consumo.\n\n### Devo colocar toda a aplicação em um único container?\n\nNão necessariamente. Você pode separar front-end, back-end e banco de dados em containers diferentes. Essa organização facilita a manutenção e a escalabilidade. Uma atualização no front-end pode ser feita reiniciando apenas seu container, sem reiniciar os demais serviços.\n\n### Vantagens de usar Docker\n\n- **Consistência entre ambientes**: a aplicação usa as mesmas versões de dependências em diferentes máquinas.\n- **Isolamento**: containers separam aplicações e ajudam a evitar conflitos de dependências.\n- **Facilidade de desenvolvimento e implantação**: o *Dockerfile* descreve como construir a imagem e permite reproduzir o ambiente em outras máquinas.\n\n### Como funciona o Dockerfile?\n\nO *Dockerfile* descreve como construir a imagem da aplicação. Nele, você escolhe a imagem base, instala dependências, copia arquivos e define o comando de execução. Um exemplo para Node.js:\n\n```dockerfile\n# Usa a imagem base do Node.js 18\nFROM node:18\n\n# Define o diretório de trabalho\nWORKDIR /app\n\n# Copia package.json e instala as dependências\nCOPY package*.json ./\nRUN npm install\n\n# Copia os demais arquivos\nCOPY . .\n\n# Documenta a porta da aplicação\nEXPOSE 3000\n\n# Define o comando de execução\nCMD [\"npm\", \"start\"]\n```\n\nEsse arquivo permite construir a aplicação com uma versão definida do Node.js e instalar suas dependências.\n\n### Conclusão\n\nO Docker oferece uma forma prática de isolar e empacotar aplicações em ambientes consistentes e reproduzíveis. Isso facilita o desenvolvimento, a implantação e a escalabilidade.\n"
+      },
+      "generics-in-typescript": {
+        "title": "TypeScript: generics avançados e tipos condicionais",
+        "content": "TypeScript adiciona tipagem estática ao JavaScript, permitindo escrever código mais seguro e escalável. Entre seus recursos estão os **generics** e os **tipos condicionais**. Neste artigo, vamos explorar como usá-los.\n\n### O que são generics?\n\nGenerics permitem criar funções e classes que trabalham com diferentes tipos sem perder a segurança da tipagem. São úteis quando você não sabe antecipadamente qual tipo será utilizado.\n\n#### Exemplo de generics\n\nConsidere uma função que retorna o primeiro elemento de um array:\n\n```typescript\nfunction firstElement<T>(array: T[]): T | undefined {\n    return array[0];\n}\n\nconst numberValue = firstElement([1, 2, 3]); // tipo: number\nconst textValue = firstElement(['a', 'b', 'c']); // tipo: string\n```\n\n### Tipos condicionais\n\nTipos condicionais permitem definir um tipo com base em uma condição. A sintaxe é `A extends B ? C : D`: se `A` estende `B`, o resultado é `C`; caso contrário, é `D`.\n\n#### Exemplo de tipos condicionais\n\nVamos criar um tipo que retorna `true` quando o tipo recebido é um array e `false` caso contrário:\n\n```typescript\ntype IsArray<T> = T extends any[] ? true : false;\n\ntype Test1 = IsArray<number[]>; // tipo: true\ntype Test2 = IsArray<number>; // tipo: false\n```\n\n### Combinando generics e tipos condicionais\n\nVocê pode combinar esses recursos para criar funções mais dinâmicas. No exemplo abaixo, a função recebe um array e usa um tipo condicional para inferir o tipo de seu primeiro elemento:\n\n```typescript\nfunction typeOfFirstElement<T>(array: T[]): T extends (infer U)[] ? U : never {\n    return array[0] as any;\n}\n\nconst type1 = typeOfFirstElement([1, 2, 3]); // tipo: number\nconst type2 = typeOfFirstElement(['a', 'b', 'c']); // tipo: string\n```\n\n### Conclusão\n\nGenerics e tipos condicionais permitem escrever código flexível e seguro. Dominar esses conceitos ajuda a melhorar a qualidade e a manutenção do código TypeScript.\n"
+      }
+    }
+  },
+  "github": {
+    "title": "Atividade no GitHub",
+    "contributions": "{{count}} contribuições",
+    "less": "Menos",
+    "more": "Mais",
+    "loading": "Carregando atividade no GitHub...",
+    "error": "Não foi possível carregar a atividade no GitHub."
+  },
+  "resume": {
+    "position": "Engenheiro de software",
+    "location": "Ribeirão Preto, SP, Brasil",
+    "about": "Desenvolvedor Full-Stack apaixonado por resolver problemas!",
+    "summary": "Desenvolvedor Full-Stack com mais de 2 anos de experiência na construção de aplicações web completas, do Front-End ao Back-End. Formado em Sistemas de Informação pela UFU, comecei minha trajetória como técnico em informática na Unesp FCAV, onde desenvolvi meus primeiros projetos de programação. Atualmente, trabalho na construção de soluções escaláveis, integração de sistemas e aplicação de boas práticas de engenharia de software.",
+    "initialPhrase": "Sua próxima grande aplicação precisa de uma base sólida e uma interface incrível. Vamos conversar e construir algo real.",
+    "education": {
+      "item0": {
+        "school": "Universidade Federal de Uberlândia (UFU)",
+        "degree": "Sistemas de Informação"
+      },
+      "item1": {
+        "school": "Universidade Estadual Paulista (Unesp)",
+        "degree": "Técnico em Informática"
+      }
+    },
+    "work": {
+      "item0": {
+        "title": "Desenvolvedor Full-Stack (foco em Front-End)",
+        "end": "Atual",
+        "badge": "Remoto",
+        "description": "Atuei no desenvolvimento e na manutenção de aplicações web em diversos projetos, contribuindo em diferentes contextos e tecnologias.\nFront-end: Refatorei e modernizei interfaces a partir de layouts do Figma usando Angular, HTML, CSS, JavaScript e TypeScript. Desenvolvi componentes reutilizáveis, melhorei a consistência visual e a experiência do usuário.\nBack-end: Contribuí em aplicações PHP e C# criando e mantendo operações CRUD, corrigindo bugs e refatorando código legado para melhorar estrutura, legibilidade e desempenho.\nIntegração com a nuvem: Trabalhei com serviços AWS como S3 e EC2 para apoiar a infraestrutura e a implantação das aplicações."
+      },
+      "item1": {
+        "title": "Desenvolvedor Full-Stack",
+        "end": "2025",
+        "badge": "Remoto",
+        "description": "Apoiei o desenvolvimento de funcionalidades de simulação SDF por meio de interfaces web, contribuindo com melhorias no front-end e no back-end.\nModernizei a arquitetura legada, migrando implementações antigas em JavaScript/PHP para soluções mais estruturadas e fáceis de manter.\nOtimizei consultas MySQL para melhorar o desempenho do sistema e a eficiência na recuperação de dados.\nColaborei com diferentes equipes para garantir integrações estáveis e melhorias contínuas na confiabilidade das aplicações."
+      },
+      "item2": {
+        "title": "Desenvolvedor Full-Stack",
+        "end": "2025",
+        "badge": "Híbrido",
+        "description": "Participei do projeto da plataforma X-RAT, voltada à análise de grupos de falhas de software e à identificação de causas raiz.\nFront-end (principal responsabilidade): Projetei e implementei a interface usando React, Vite, Tailwind CSS, React Query e Chart.js, priorizando desempenho, usabilidade e clareza na visualização de dados.\nBack-end: Desenvolvi funcionalidades com Python e FastAPI para processar dataframes e arquivos de logs EVTX.\nIntegrei os sistemas de front-end e back-end para permitir a geração e visualização automatizadas de relatórios de confiabilidade."
+      },
+      "item3": {
+        "title": "Instrutor de programação web",
+        "end": "2024",
+        "badge": "Presencial",
+        "description": "Ensinei conceitos fundamentais de computação a adolescentes a partir de 12 anos.\nMinistrei aulas práticas de HTML, CSS e introdução ao Bootstrap, orientando os alunos na construção de sites completos.\nSupervisionei projetos finais individuais e em grupo, incentivando colaboração, criatividade e aplicação prática do conhecimento.\nPromovi inclusão digital e habilidades básicas de programação no ambiente acadêmico."
+      }
+    },
+    "projects": {
+      "item0": {
+        "title": "Plataforma de videoaulas com sistema distribuído",
+        "description": "Plataforma de ensino online com gerenciamento de filas para envio de vídeos, armazenamento em nuvem e sistema de autenticação e gestão de cursos."
+      },
+      "item1": {
+        "title": "Monte Bot - Laboratório de Robótica",
+        "description": "Site institucional com formulário de inscrição e autenticação via NextAuth (login com GitHub). Inclui um painel para visualizar os candidatos e seus dados."
+      },
+      "item2": {
+        "title": "MedAgenda",
+        "description": "Projeto para gerenciar uma clínica médica, incluindo pacientes, médicos e consultas."
+      },
+      "item3": {
+        "title": "Blog com Next",
+        "description": "Blog que permite criar novos posts dinamicamente a partir de arquivos MDX, gerando uma rota automaticamente para cada arquivo."
+      },
+      "item4": {
+        "title": "Dashboard Full Stack",
+        "description": "Dashboard com Next.js que inclui CRUD de usuários, autenticação, criptografia, diferentes permissões e consulta de dados no acesso."
+      },
+      "item5": {
+        "title": "Tech Vantage - Site corporativo",
+        "description": "Projeto final de Programação para Internet: um sistema funcional com cadastro por formulário e impressão de dados."
+      },
+      "item6": {
+        "title": "Lista de tarefas - MERN Stack",
+        "description": "Prova de conceito de uma lista de tarefas com as quatro operações CRUD, banco de dados não relacional e sistema completo de login."
+      },
+      "item7": {
+        "title": "Landing page Meow Café",
+        "description": "Projeto proposto pelo Codante para transformar o design do Meow Café em uma página funcional e responsiva, sem frameworks."
+      },
+      "item8": {
+        "title": "API - FastAPI",
+        "description": "API desenvolvida com FastAPI para realizar operações CRUD com banco de dados relacional."
+      },
+      "item9": {
+        "title": "Landing page Insove - Saúde e cuidados médicos",
+        "description": "Landing page de serviços médicos com layout responsivo, desenvolvida com HTML, Tailwind CSS, RemixIcon, SwiperJS e ScrollReveal."
+      },
+      "item10": {
+        "title": "Buscador de nomes",
+        "description": "Projeto final de Programação para Internet: um buscador de nomes que consome uma API no back-end, processa os dados e os exibe no front-end com histórico de buscas."
+      },
+      "item11": {
+        "title": "Clone do Google Keep",
+        "description": "Clone do Google Keep sem frameworks, com criação, fixação e duplicação de notas e exportação para CSV."
+      },
+      "item12": {
+        "title": "API - Node Fastify",
+        "description": "API desenvolvida para realizar operações CRUD usando um banco de dados relacional."
+      },
+      "item13": {
+        "title": "Portfólio pessoal V1",
+        "description": "Primeira versão do meu portfólio, com internacionalização (i18n), design responsivo pensado para dispositivos móveis e suporte ao modo escuro, apresentando meus projetos e experiências."
+      }
+    }
+  }
+}

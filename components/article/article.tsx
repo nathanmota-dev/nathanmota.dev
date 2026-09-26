@@ -27,6 +27,6 @@ export function Article({ html }: ArticleProps) {
             link.rel = "noopener noreferrer";
         });
     };
-    useEffect(handleFormatCode, []);
+    useEffect(handleFormatCode, [html]);
     return <article dangerouslySetInnerHTML={{ __html: html }} />;
 }

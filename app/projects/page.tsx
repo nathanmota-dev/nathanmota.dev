@@ -1,15 +1,19 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import { useState } from "react";
 import { ExpandedProjectCard } from "@/components/cards/card-project-expanded/card-project-expanded";
-import { RESUME_DATA } from "@/data/resume-data";
+import { getResumeData } from "@/data/resume-data";
 import { SegmentedControl } from "@/components/segmented-control/segmented-control";
 import type { ProjectFilterType } from "@/types/segmented-control";
 
 export default function Projects() {
+    const t = useTranslations("projects");
+    const resume = getResumeData(useTranslations("resume"));
     const [activeFilter, setActiveFilter] = useState<ProjectFilterType>("all");
 
-    const filteredProjects = RESUME_DATA.projects.filter((project) => {
+    const filteredProjects = resume.projects.filter((project) => {
         if (activeFilter === "all") return true;
         return project.type === activeFilter;
     });
@@ -18,7 +22,7 @@ export default function Projects() {
         <div className="max-w-3xl mx-auto py-2 px-4 sm:px-0">
             <div className="py-4 flex flex-col items-center text-center">
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] pb-2">
-                    Projects
+                    {t("title")}
                 </h2>
 
                 <SegmentedControl
@@ -44,7 +48,7 @@ export default function Projects() {
                         ))
                     ) : (
                         <div className="col-span-1 md:col-span-2 text-center py-12 text-muted-foreground">
-                            No projects were found for this category.
+                            {t("empty")}
                         </div>
                     )}
                 </section>
