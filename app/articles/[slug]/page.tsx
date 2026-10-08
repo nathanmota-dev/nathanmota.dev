@@ -45,8 +45,9 @@ export default async function ArticlePage({
     }
 
     return (
-        <main className="max-w-3xl mx-auto px-4 lg:px-0 py-2">
-            <div className="py-4 flex justify-center text-center">
+        <main data-article-page className="mx-auto max-w-3xl px-4 pt-2 pb-16 lg:px-0">
+            <Article html={articleData.contentHtml}>
+            <div className="py-4 flex justify-start text-left">
                 <h1 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] pb-2">
                     {articleData.title}
                 </h1>
@@ -63,7 +64,7 @@ export default async function ArticlePage({
                     {articleData.date}
                 </div>
             </div>
-            <Article html={articleData.contentHtml} />
+            </Article>
         </main>
     );
 }

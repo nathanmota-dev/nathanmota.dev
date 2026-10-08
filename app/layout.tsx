@@ -29,7 +29,7 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} className="has-[[data-article-page]]:scroll-smooth motion-reduce:has-[[data-article-page]]:scroll-auto" suppressHydrationWarning>
       <body
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
