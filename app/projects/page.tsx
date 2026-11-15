@@ -44,6 +44,7 @@ export default function Projects() {
                                 githubLink={project.githubUrl}
                                 deployLink={"deployUrl" in project ? project.deployUrl || undefined : undefined}
                                 type={project.type as "frontend" | "backend" | "fullstack"}
+                                href={"slug" in project ? `/projects/${project.slug}` : undefined}
                             />
                         ))
                     ) : (

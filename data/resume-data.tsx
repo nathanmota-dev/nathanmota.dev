@@ -151,6 +151,29 @@ export const RESUME_DATA = {
     },
     projects: [
         {
+            // A slug gives the project a case study page at /projects/[slug],
+            // written in projects/<slug>.<pt|en>.md.
+            slug: "personal-financial-control",
+            image: "projects/personal-financial-control/dashboard-1920.jpg",
+            techStack: [
+                "Next",
+                "TypeScript",
+                "Drizzle",
+                "Turso",
+                "Zod",
+                "Vitest",
+                "Playwright",
+                "MCP",
+            ],
+            githubUrl: "https://github.com/nathanmota-dev/personal-financial-control",
+            deployUrl: "https://personal-financial-control-zeta.vercel.app",
+            type: "fullstack",
+            link: {
+                label: "https://personal-financial-control-zeta.vercel.app",
+                href: "https://personal-financial-control-zeta.vercel.app",
+            },
+        },
+        {
             image: "projects/distributed.jpeg",
             techStack: [
                 "Node",

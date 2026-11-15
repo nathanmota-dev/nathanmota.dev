@@ -201,6 +201,90 @@ article a {
   @apply dark:decoration-purple-600;
 }
 
+/* Clicking an image opens it enlarged (see ImageLightbox). */
+article img {
+  @apply w-full cursor-zoom-in rounded-2xl border border-zinc-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-500;
+}
+
+.dark article img {
+  @apply dark:border-zinc-700;
+}
+
+/* Diagrams are drawn for a light background: flip their lightness in dark
+   mode and rotate the hue back, so the accent colors stay recognizable. */
+.dark article img[src$=".svg"] {
+  filter: invert(1) hue-rotate(180deg);
+  border-color: #d4d4d8;
+}
+
+/* Enlarged image (ImageLightbox). On phones it is wider than the screen and
+   panned sideways; from 640px it grows until it hits the screen's width or
+   height, keeping the image's aspect ratio (--ratio). */
+.lightbox-image {
+  flex-shrink: 0;
+  width: 220vw;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+}
+
+.lightbox-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 40rem) {
+  .lightbox-image {
+    width: min(100vw - 3rem, (100dvh - 3rem) * var(--ratio, 1.6));
+  }
+}
+
+/* Same treatment as diagrams inside the article: dark panel, inverted SVG. */
+.dark .lightbox-image {
+  background: #18181b;
+  outline: 1px solid #3f3f46;
+}
+
+.dark .lightbox-image img[src$=".svg"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Block display lets wide tables scroll sideways on phones. */
+article table {
+  @apply block w-full overflow-x-auto border-collapse text-base;
+}
+
+article :is(th, td) {
+  @apply border-b border-zinc-200 px-3 py-2 text-left align-top text-zinc-800;
+}
+
+article th {
+  @apply whitespace-nowrap font-semibold text-zinc-950;
+}
+
+article :is(th, td)[align="right"] {
+  @apply whitespace-nowrap text-right tabular-nums;
+}
+
+.dark article :is(th, td) {
+  @apply dark:border-zinc-700 dark:text-zinc-300/80;
+}
+
+.dark article th {
+  @apply dark:text-zinc-200;
+}
+
+/* An italic paragraph right after an image is its caption. */
+article p:has(> img:only-child) + p:has(> em:only-child) {
+  @apply -mt-2 text-center text-sm text-zinc-500;
+}
+
+.dark article p:has(> img:only-child) + p:has(> em:only-child) {
+  @apply dark:text-zinc-400;
+}
+
 @keyframes float {
   0% {
     transform: translateY(0px);

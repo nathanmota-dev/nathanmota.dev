@@ -37,7 +37,15 @@
     "backend": "Backend",
     "preview": "Preview of {title}",
     "github": "View code on GitHub",
-    "online": "View live project"
+    "online": "View live project",
+    "details": "Read case study",
+    "contents": "In this case study",
+    "gallery": "Project screens",
+    "previous": "Previous screen",
+    "next": "Next screen",
+    "slide": "Screen {current} of {total}",
+    "expand": "Enlarge: {alt}",
+    "close": "Close image"
   },
   "setup": {
     "title": "My Setup",
@@ -147,58 +155,62 @@
     },
     "projects": {
       "item0": {
+        "title": "Personal Financial Control",
+        "description": "Personal finance system with Open Finance imports, field-level encryption, a local database replica and an MCP server for AI agents."
+      },
+      "item1": {
         "title": "Video Lecture Platform with Distributed System",
         "description": "Online learning platform with queue management for video uploads, cloud storage, and a course authentication and management system."
       },
-      "item1": {
+      "item2": {
         "title": "Monte Bot - Robotics Laboratory",
         "description": "Institutional website with an application form and authentication using NextAuth (GitHub login). Includes a dashboard for viewing applicants and their data."
       },
-      "item2": {
+      "item3": {
         "title": "MedAgenda",
         "description": "Med Agenda is a project developed for managing a medical clinic, including the management of patients, doctors, and appointments."
       },
-      "item3": {
+      "item4": {
         "title": "Blog with Next",
         "description": "The goal of the blog is to allow the creation of new posts dynamically, using MDX files where each created MDX file automatically generates a route."
       },
-      "item4": {
+      "item5": {
         "title": "Full Stack Dashboard",
         "description": "Dashboard built with Next.js featuring User CRUD, Authentication, Encryption, Different User Permissions, and Data Retrieval on Access"
       },
-      "item5": {
+      "item6": {
         "title": "Tech Vantage - Corporate Website",
         "description": "Final Project for Internet Programming developing a functional system with requirements like Form Registration and Data Printing"
       },
-      "item6": {
+      "item7": {
         "title": "Todo List - MERN Stack",
         "description": "POC - Todo List made to perform the 4 CRUD operations using a non-relational database and includes a complete Login System"
       },
-      "item7": {
+      "item8": {
         "title": "Landing Page Meow Café",
         "description": "Project proposed by Codante where the goal was to bring the Meow Café design to life, transforming it into a functional and responsive page without using frameworks."
       },
-      "item8": {
+      "item9": {
         "title": "API - FastAPI",
         "description": "API built with FastAPI with the goal of creating a robust and modularized API in Python, later reused in my Scientific Initiation."
       },
-      "item9": {
+      "item10": {
         "title": "Landing Page Insove Medical Healthcare",
         "description": "Landing Page created using TailwindCSS designed for medical clinics, aiming to provide a good experience for doctors and patients."
       },
-      "item10": {
+      "item11": {
         "title": "Name Finder",
         "description": "Final Project for Internet Programming where the goal was to create a name search engine consuming an API on the backend, processing the data, and displaying it on the frontend with a search history."
       },
-      "item11": {
+      "item12": {
         "title": "Google Keep Clone",
         "description": "Google Keep clone proposed to be done without frameworks, allowing you to make notes, pin notes, duplicate notes, and export notes to a CSV file."
       },
-      "item12": {
+      "item13": {
         "title": "API - Node Fastify",
         "description": "API built with the goal of performing CRUD operations using a relational database."
       },
-      "item13": {
+      "item14": {
         "title": "Personal Portfolio V1",
         "description": "First version of my portfolio focused on internationalization (i18n), Mobile-First responsive design, and Dark Mode support, showcasing my main projects and experiences."
       }

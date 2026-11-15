@@ -3,6 +3,8 @@
 import { memo, useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
 import { useLocale } from "next-intl";
 import { highlight } from "sugar-high";
+import { ImageLightbox } from "@/components/image-lightbox/image-lightbox";
+import type { LightboxImage } from "@/types/image-lightbox";
 
 type Heading = { id: string; text: string; depth: number };
 
@@ -19,16 +21,17 @@ const ArticleBody = memo(function ArticleBody({ html, articleRef }: {
     );
 });
 
-export function Article({ html, children }: { html: string; children?: ReactNode }) {
+export function Article({ html, children, contentsLabel }: { html: string; children?: ReactNode; contentsLabel?: string }) {
     const articleRef = useRef<HTMLElement>(null);
     const readingRef = useRef<HTMLDivElement>(null);
     const [headings, setHeadings] = useState<Heading[]>([]);
     const [activeId, setActiveId] = useState("");
     const [progress, setProgress] = useState(0);
     const [readingMinutes, setReadingMinutes] = useState(0);
+    const [expandedImage, setExpandedImage] = useState<LightboxImage | null>(null);
     const remainingMinutes = Math.ceil(readingMinutes * (1 - progress / 100));
     const portuguese = useLocale() === "pt-BR";
-    const label = portuguese ? "Neste post" : "In this post";
+    const label = contentsLabel ?? (portuguese ? "Neste post" : "In this post");
 
     useEffect(() => {
         const article = articleRef.current;
@@ -57,6 +60,25 @@ export function Article({ html, children }: { html: string; children?: ReactNode
             heading.dataset.marker = "#".repeat(depth);
             return { id, text, depth };
         });
+
+        // Images open enlarged in a lightbox, by click or by keyboard.
+        article.querySelectorAll<HTMLImageElement>("img").forEach((image) => {
+            image.tabIndex = 0;
+            image.setAttribute("role", "button");
+            image.setAttribute("aria-haspopup", "dialog");
+        });
+        const expandImage = (event: Event) => {
+            const image = event.target;
+            if (!(image instanceof HTMLImageElement)) return;
+            if (event instanceof KeyboardEvent) {
+                if (event.key !== "Enter" && event.key !== " ") return;
+                event.preventDefault();
+            }
+            const ratio = image.naturalWidth && image.naturalHeight ? image.naturalWidth / image.naturalHeight : 16 / 10;
+            setExpandedImage({ src: image.currentSrc || image.src, alt: image.alt, ratio });
+        };
+        article.addEventListener("click", expandImage);
+        article.addEventListener("keydown", expandImage);
 
         article.querySelectorAll<HTMLAnchorElement>("a").forEach((link) => {
             if (link.origin !== window.location.origin) {
@@ -100,6 +122,8 @@ export function Article({ html, children }: { html: string; children?: ReactNode
             cancelAnimationFrame(initial);
             cancelAnimationFrame(frame);
             observer.disconnect();
+            article.removeEventListener("click", expandImage);
+            article.removeEventListener("keydown", expandImage);
             window.removeEventListener("scroll", schedule);
             window.removeEventListener("resize", schedule);
         };
@@ -128,11 +152,16 @@ export function Article({ html, children }: { html: string; children?: ReactNode
                         <details className="border-b border-muted pb-4 min-[1400px]:hidden"><summary className="cursor-pointer tracking-[.08em] uppercase">{label}</summary><ul className="mt-4 max-h-[45dvh] overflow-y-auto">{links}</ul></details>
                     </nav>}
                 </aside>
-                <div ref={readingRef} className="min-w-0">
+                <div ref={readingRef} className="w-full min-w-0">
                     {children}
                     <ArticleBody html={html} articleRef={articleRef} />
                 </div>
             </div>
+            <ImageLightbox
+                image={expandedImage}
+                closeLabel={portuguese ? "Fechar imagem" : "Close image"}
+                onClose={() => setExpandedImage(null)}
+            />
         </>
     );
 }

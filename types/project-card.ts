@@ -8,6 +8,8 @@ export interface ExpandedProjectCardProps {
     githubLink?: string;
     deployLink?: string;
     type: ProjectType;
+    /** Case study page; when set, the whole card links to it. */
+    href?: string;
 }
 
 export interface ProjectCardProps {

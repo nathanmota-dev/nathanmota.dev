@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { FiGithub, FiExternalLink } from "react-icons/fi";
+import Link from "next/link";
+import { FiGithub, FiExternalLink, FiArrowRight } from "react-icons/fi";
 import {
     Card,
     CardHeader,
@@ -19,10 +20,11 @@ export function ExpandedProjectCard({
     githubLink,
     deployLink,
     type,
+    href,
 }: ExpandedProjectCardProps) {
     const t = useTranslations("projects");
     return (
-        <Card className="group flex flex-col overflow-hidden border border-border/50 rounded-3xl transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:bg-black/2">
+        <Card className="group relative flex flex-col overflow-hidden border border-border/50 rounded-3xl transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:bg-black/2">
 
             {/* Seção da Imagem */}
             <div className="relative w-full h-56 md:h-64 overflow-hidden">
@@ -43,8 +45,8 @@ export function ExpandedProjectCard({
                             {t(type)}
                         </span>
 
-                        {/* Links */}
-                        <div className="flex gap-3">
+                        {/* Links: above the card-wide link so they stay clickable */}
+                        <div className="relative z-10 flex gap-3">
                             {githubLink && (
                                 <a
                                     href={githubLink}
@@ -71,7 +73,16 @@ export function ExpandedProjectCard({
                     </div>
 
                     <CardTitle className="text-xl md:text-2xl font-bold">
-                        {title}
+                        {href ? (
+                            <Link
+                                href={href}
+                                className="after:absolute after:inset-0 after:rounded-3xl after:content-[''] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-primary"
+                            >
+                                {title}
+                            </Link>
+                        ) : (
+                            title
+                        )}
                     </CardTitle>
 
                     <CardDescription className="text-sm text-muted-foreground">
@@ -91,6 +102,13 @@ export function ExpandedProjectCard({
                             </Badge>
                         ))}
                     </div>
+
+                    {href && (
+                        <span aria-hidden="true" className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+                            {t("details")}
+                            <FiArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        </span>
+                    )}
                 </CardContent>
             </div>
         </Card>

@@ -37,7 +37,15 @@
     "backend": "Backend",
     "preview": "Prévia do projeto {title}",
     "github": "Ver código no GitHub",
-    "online": "Acessar projeto online"
+    "online": "Acessar projeto online",
+    "details": "Ver estudo de caso",
+    "contents": "Neste estudo",
+    "gallery": "Telas do projeto",
+    "previous": "Tela anterior",
+    "next": "Próxima tela",
+    "slide": "Tela {current} de {total}",
+    "expand": "Ampliar: {alt}",
+    "close": "Fechar imagem"
   },
   "setup": {
     "title": "Meu setup",
@@ -147,58 +155,62 @@
     },
     "projects": {
       "item0": {
+        "title": "Personal Financial Control",
+        "description": "Sistema de finanças pessoais com importação via Open Finance, criptografia por campo, réplica local do banco e servidor MCP para agentes de IA."
+      },
+      "item1": {
         "title": "Plataforma de videoaulas com sistema distribuído",
         "description": "Plataforma de ensino online com gerenciamento de filas para envio de vídeos, armazenamento em nuvem e sistema de autenticação e gestão de cursos."
       },
-      "item1": {
+      "item2": {
         "title": "Monte Bot - Laboratório de Robótica",
         "description": "Site institucional com formulário de inscrição e autenticação via NextAuth (login com GitHub). Inclui um painel para visualizar os candidatos e seus dados."
       },
-      "item2": {
+      "item3": {
         "title": "MedAgenda",
         "description": "Projeto para gerenciar uma clínica médica, incluindo pacientes, médicos e consultas."
       },
-      "item3": {
+      "item4": {
         "title": "Blog com Next",
         "description": "Blog que permite criar novos posts dinamicamente a partir de arquivos MDX, gerando uma rota automaticamente para cada arquivo."
       },
-      "item4": {
+      "item5": {
         "title": "Dashboard Full Stack",
         "description": "Dashboard com Next.js que inclui CRUD de usuários, autenticação, criptografia, diferentes permissões e consulta de dados no acesso."
       },
-      "item5": {
+      "item6": {
         "title": "Tech Vantage - Site corporativo",
         "description": "Projeto final de Programação para Internet: um sistema funcional com cadastro por formulário e impressão de dados."
       },
-      "item6": {
+      "item7": {
         "title": "Lista de tarefas - MERN Stack",
         "description": "Prova de conceito de uma lista de tarefas com as quatro operações CRUD, banco de dados não relacional e sistema completo de login."
       },
-      "item7": {
+      "item8": {
         "title": "Landing page Meow Café",
         "description": "Projeto proposto pelo Codante para transformar o design do Meow Café em uma página funcional e responsiva, sem frameworks."
       },
-      "item8": {
+      "item9": {
         "title": "API - FastAPI",
         "description": "API desenvolvida com FastAPI para realizar operações CRUD com banco de dados relacional."
       },
-      "item9": {
+      "item10": {
         "title": "Landing page Insove - Saúde e cuidados médicos",
         "description": "Landing page de serviços médicos com layout responsivo, desenvolvida com HTML, Tailwind CSS, RemixIcon, SwiperJS e ScrollReveal."
       },
-      "item10": {
+      "item11": {
         "title": "Buscador de nomes",
         "description": "Projeto final de Programação para Internet: um buscador de nomes que consome uma API no back-end, processa os dados e os exibe no front-end com histórico de buscas."
       },
-      "item11": {
+      "item12": {
         "title": "Clone do Google Keep",
         "description": "Clone do Google Keep sem frameworks, com criação, fixação e duplicação de notas e exportação para CSV."
       },
-      "item12": {
+      "item13": {
         "title": "API - Node Fastify",
         "description": "API desenvolvida para realizar operações CRUD usando um banco de dados relacional."
       },
-      "item13": {
+      "item14": {
         "title": "Portfólio pessoal V1",
         "description": "Primeira versão do meu portfólio, com internacionalização (i18n), design responsivo pensado para dispositivos móveis e suporte ao modo escuro, apresentando meus projetos e experiências."
       }
