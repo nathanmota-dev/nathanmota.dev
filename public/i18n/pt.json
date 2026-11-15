@@ -8,7 +8,8 @@
     "articles": "artigos",
     "contact": "contato",
     "home": "Voltar para o início",
-    "language": "Idioma"
+    "language": "Idioma",
+    "backTo": "Voltar para {page}"
   },
   "home": {
     "resume": "Ver currículo",
