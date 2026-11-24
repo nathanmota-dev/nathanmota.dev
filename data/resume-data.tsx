@@ -163,6 +163,7 @@ export const RESUME_DATA = {
                 "Zod",
                 "Vitest",
                 "Playwright",
+                "AI SDK",
                 "MCP",
             ],
             githubUrl: "https://github.com/nathanmota-dev/personal-financial-control",

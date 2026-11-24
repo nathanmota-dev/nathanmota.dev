@@ -157,7 +157,7 @@
     "projects": {
       "item0": {
         "title": "Personal Financial Control",
-        "description": "Personal finance system with Open Finance imports, field-level encryption, a local database replica and an MCP server for AI agents."
+        "description": "AI-powered personal finance app: an assistant that answers questions about your spending and automatic categorization, plus Open Finance imports, field-level encryption and an MCP server."
       },
       "item1": {
         "title": "Video Lecture Platform with Distributed System",

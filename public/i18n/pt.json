@@ -157,7 +157,7 @@
     "projects": {
       "item0": {
         "title": "Personal Financial Control",
-        "description": "Sistema de finanças pessoais com importação via Open Finance, criptografia por campo, réplica local do banco e servidor MCP para agentes de IA."
+        "description": "App de finanças pessoais com IA: assistente que responde sobre seus gastos e categorização automática, além de importação via Open Finance, criptografia por campo e servidor MCP."
       },
       "item1": {
         "title": "Plataforma de videoaulas com sistema distribuído",
