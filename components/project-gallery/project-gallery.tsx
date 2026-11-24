@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { ImageLightbox } from "@/components/image-lightbox/image-lightbox";
-import type { LightboxImage } from "@/types/image-lightbox";
 import type { ProjectGalleryProps } from "@/types/project";
 
 const arrowClassName = "absolute top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/60 p-2.5 text-white ring-1 ring-white/20 backdrop-blur-sm transition hover:bg-black/80 disabled:pointer-events-none disabled:opacity-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
@@ -18,7 +17,7 @@ export function ProjectGallery({ images }: ProjectGalleryProps) {
     const t = useTranslations("projects");
     const trackRef = useRef<HTMLDivElement>(null);
     const [index, setIndex] = useState(0);
-    const [expandedImage, setExpandedImage] = useState<LightboxImage | null>(null);
+    const [expanded, setExpanded] = useState<{ slide: number; ratio: number } | null>(null);
     const last = images.length - 1;
 
     // The current slide follows the scroll position, whatever moved it.
@@ -40,19 +39,25 @@ export function ProjectGallery({ images }: ProjectGalleryProps) {
         };
     }, [last]);
 
-    const goTo = (target: number) => {
+    const goTo = (target: number, instant = false) => {
         const track = trackRef.current;
         if (!track) return;
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         const slide = Math.min(last, Math.max(0, target));
-        track.scrollTo({ left: slide * track.clientWidth, behavior: reduceMotion ? "auto" : "smooth" });
+        track.scrollTo({ left: slide * track.clientWidth, behavior: instant || reduceMotion ? "auto" : "smooth" });
     };
 
-    const expand = (event: MouseEvent<HTMLButtonElement>, src: string, alt: string) => {
-        const image = event.currentTarget.querySelector("img");
+    // The carousel follows the lightbox, so closing it lands on the image that was open.
+    // The rendered slide knows the image's real proportions; 16:9 until it has loaded.
+    const expandTo = (slide: number) => {
+        const image = trackRef.current?.children[slide]?.querySelector("img");
         const ratio = image?.naturalWidth && image.naturalHeight ? image.naturalWidth / image.naturalHeight : 16 / 9;
-        setExpandedImage({ src, alt, ratio });
+        setExpanded({ slide, ratio });
+        goTo(slide, true);
     };
+
+    const current = expanded?.slide ?? null;
+    const expandedImage = expanded && { src: images[expanded.slide].src, alt: images[expanded.slide].alt, ratio: expanded.ratio };
 
     if (images.length === 0) return null;
 
@@ -75,7 +80,7 @@ export function ProjectGallery({ images }: ProjectGalleryProps) {
                         >
                             <button
                                 type="button"
-                                onClick={(event) => expand(event, image.src, image.alt)}
+                                onClick={() => expandTo(slide)}
                                 aria-label={t("expand", { alt: image.alt })}
                                 className="absolute inset-0 cursor-zoom-in focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-primary"
                             >
@@ -125,7 +130,18 @@ export function ProjectGallery({ images }: ProjectGalleryProps) {
                 {images[index].caption}
             </p>
 
-            <ImageLightbox image={expandedImage} closeLabel={t("close")} onClose={() => setExpandedImage(null)} />
+            <ImageLightbox
+                image={expandedImage}
+                closeLabel={t("close")}
+                onClose={() => setExpanded(null)}
+                navigation={current === null || images.length < 2 ? undefined : {
+                    previousLabel: t("previous"),
+                    nextLabel: t("next"),
+                    onPrevious: current > 0 ? () => expandTo(current - 1) : undefined,
+                    onNext: current < last ? () => expandTo(current + 1) : undefined,
+                    position: `${current + 1}/${images.length}`,
+                }}
+            />
         </section>
     );
 }

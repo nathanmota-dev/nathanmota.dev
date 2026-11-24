@@ -27,6 +27,7 @@ export function Article({ html, children, contentsLabel }: { html: string; child
     const [headings, setHeadings] = useState<Heading[]>([]);
     const [activeId, setActiveId] = useState("");
     const [progress, setProgress] = useState(0);
+    const [readingStarted, setReadingStarted] = useState(false);
     const [readingMinutes, setReadingMinutes] = useState(0);
     const [expandedImage, setExpandedImage] = useState<LightboxImage | null>(null);
     const remainingMinutes = Math.ceil(readingMinutes * (1 - progress / 100));
@@ -92,6 +93,8 @@ export function Article({ html, children, contentsLabel }: { html: string; child
             frame = 0;
             const bounds = reading.getBoundingClientRect();
             const distance = bounds.height - window.innerHeight + 64;
+            // The navbar scrolls away with the page; by the time the title reaches the top it is gone.
+            setReadingStarted(bounds.top <= 64);
             setProgress(Math.round(Math.min(1, Math.max(0,
                 distance > 0 ? (64 - bounds.top) / distance : bounds.top <= 64 ? 1 : 0,
             )) * 100));
@@ -143,7 +146,7 @@ export function Article({ html, children, contentsLabel }: { html: string; child
                 <div className="h-[3px] bg-muted" role="progressbar" aria-label={portuguese ? "Progresso de leitura" : "Reading progress"} aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}>
                     <div className="h-full origin-left bg-primary" style={{ transform: `scaleX(${progress / 100})` }} />
                 </div>
-                <span className="float-right mt-2 mr-4 rounded-sm bg-background px-[.65rem] py-1 font-[family-name:var(--font-geist-mono)] text-xs leading-[1.5] text-muted-foreground">{progress}% {portuguese ? "lido" : "read"} · {portuguese ? `faltam ${remainingMinutes} min` : `${remainingMinutes} min left`}</span>
+                <span aria-hidden={!readingStarted} className={`float-right mt-2 mr-4 rounded-sm bg-background px-[.65rem] py-1 font-[family-name:var(--font-geist-mono)] text-xs leading-[1.5] text-muted-foreground transition-opacity duration-200 motion-reduce:transition-none ${readingStarted ? "opacity-100" : "opacity-0"}`}>{progress}% {portuguese ? "lido" : "read"} · {portuguese ? `faltam ${remainingMinutes} min` : `${remainingMinutes} min left`}</span>
             </div>
             <div className="mx-auto flex w-full flex-col items-start gap-6 min-[1400px]:grid min-[1400px]:grid-cols-[0_minmax(0,1fr)] min-[1400px]:gap-0">
                 <aside className="w-full overflow-y-auto font-[family-name:var(--font-geist-mono)] text-[.8rem] leading-[1.6] text-muted-foreground [scrollbar-color:var(--muted)_transparent] [scrollbar-width:thin] min-[1400px]:sticky min-[1400px]:top-16 min-[1400px]:-ml-72 min-[1400px]:max-h-[calc(100dvh-6rem)] min-[1400px]:w-60">
